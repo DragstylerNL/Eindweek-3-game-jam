@@ -3,9 +3,8 @@
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField]
-    private float speed = 5f;
+    
+    public float speed = 1000f;
 
     private PlayerMotor motor;
 
@@ -20,9 +19,16 @@ public class PlayerController : MonoBehaviour
         float _zMov = Input.GetAxisRaw("Vertical");
 
         Move(_xMov);
+        Jump(_zMov);
     }
 
     void Move(float _xMov)
+    {
+        float sendX = _xMov * speed * Time.deltaTime;
+        motor.Move(sendX);
+    }
+
+    void Jump(float _zMov)
     {
         
     }
